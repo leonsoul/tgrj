@@ -1,13 +1,19 @@
 # from logging.config import dictConfig
 import os
+import platform
+
 from flask import Flask
 from flask_session import Session
 from Demo_utils.logger import Log as log
 from app.user_views import user_blueprint
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-static_dir = os.path.join(BASE_DIR, 'static')
-templates_dir = os.path.join(BASE_DIR, 'templates')
+if platform.system() == 'Linux':
+    static_dir = "/root/job/Pinkheart/static"
+    templates_dir = "/root/job/Pinkheart/templates"
+else:
+    static_dir = os.path.join(BASE_DIR, 'static')
+    templates_dir = os.path.join(BASE_DIR, 'templates')
 se = Session()
 
 
@@ -21,5 +27,5 @@ def create_app():
     app.debug = True
     # db.init_app(app)
     se.init_app(app)
-    log.info("启动地址：",static_dir,templates_dir)
+    log.info("启动地址：", static_dir, templates_dir)
     return app
