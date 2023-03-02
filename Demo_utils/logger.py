@@ -66,7 +66,7 @@ def get_current_time():
 
 
 class Log:
-    report_path = '/Log' + '/' + today
+    report_path = '/logs' + '/' + today
     log_file = get_file_path(report_path, "log_file.log")
     # err_file = get_file_path(report_path, "err_file.log")
     logger.setLevel(LEVELS.get(level, logging.INFO))
